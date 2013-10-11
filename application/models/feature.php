@@ -19,10 +19,12 @@ return $data;
 function insert_feature($arrayList){
 	foreach($arrayList as $array){
 		$this->db->insert('feature',$array);
-		if($this->db->mysql_error())
-			echo('error');
 }
 	
+}
+
+function delete_feature($arraylist){
+
 }
 
 
