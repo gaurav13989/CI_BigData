@@ -9,7 +9,15 @@ class Data_load extends CI_Controller {
 
 	public function index()
 	{
-		$this->home();
+		//$this->home();
+		$this->load->model('feature');
+		$array=array(array('feature_id'=>103, 'feature_name'=>'abc'),array('feature_id'=>104,'feature_name'=>'def'));
+
+		$this->feature->insert_feature($array);
+		$data=$this->feature->getAll_feature();
+		foreach($data as $row){
+			echo $row->feature_id;
+		}
 	}
 
 	public function home($error = '')
