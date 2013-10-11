@@ -1,9 +1,14 @@
 <div id = "uploadBox">
-	Upload file<br/></br>
-	<form name="uploadForm" method="POST" enctype="multipart/form-data">
+	Upload file<br/><br/>
+	<?php 
+	if(!empty($error))
+	foreach ($error as $err) {
+		echo '<span style="color: red;">'.$err.'</span>';
+	} ?>
+	<?php echo form_open_multipart('data_load/upload');?>
 		<div class = "cell">
 		Enter city name: <input type="text" name="cityName"/><br/>
-		Choose a file: <input type="file" name="file"/><br/>
+		Choose a file: <input type="file" name="userfile"/><br/>
 		<div style="width: 270px; display: inline-block;"></div><input type="submit" value="Submit"/>
 		</div>
 		<div class="clear"></div>
