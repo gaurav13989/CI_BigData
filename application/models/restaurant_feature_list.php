@@ -18,9 +18,10 @@ class restaurant_feature_list extends CI_Model{
 	function getAll_restaurant_feature_list($arrayList=NULL) {
 	
 		if(!(is_null($arrayList))){
-			foreach($arrayList as $array)
+			foreach($arrayList as $array){
 				$this->db->where('restaurant_id',$array['restaurant_id']);
 				$this->db->where('city',$array['city']);
+			}
 		}
 		$query=$this->db->get('restaurant_feature_list');
 		if($query->num_rows()>0)
