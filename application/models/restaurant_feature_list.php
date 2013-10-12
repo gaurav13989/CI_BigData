@@ -22,5 +22,4 @@ function insert_feature($arrayList){
 }
 	
 }
-} 
-?>
+}
