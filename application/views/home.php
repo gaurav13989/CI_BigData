@@ -35,6 +35,7 @@
 	Delete File
 	<ul>
 		<li>The features list file with feature_id - feature_name cannot be deleted until all other files have been deleted</li>
+		<li>The name of the feature list file should be 'feature.txt'</li>
 		<li>To download the uploaded txt files click on the hyperlinked file names below</li>
 		<li>To delete a file and all records that were inserted because of the file, click on delete
 			<ul>
@@ -53,7 +54,7 @@
 	</div>
 	<?php foreach($uploadedfile as $file) { // loop begin?>
 	<div class="record">
-		<div class="cell"><?php echo $file->fileName?></div><?// hyperlinked filename?> 
+		<div class="cell"><a href="/CI_BigData/uploads/<?php echo $file->fileName?>"><?php echo $file->fileName?></a></div><?// hyperlinked filename?> 
 		<div class="cell"><?php echo $file->cityName?></div><?// full city name?>
 		<div class="cell"><?php echo $file->city?></div><?// city initials?>
 		<div class="cell"><input type="button" value="DELETE" class="deleteBtn"/></div><?// delete button?>

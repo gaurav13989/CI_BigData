@@ -13,6 +13,7 @@
 			border: 1px solid black;
 			float: left;
 			min-width: 100px;
+			min-height: 30px;
 			margin-right: -1px;
 			margin-bottom: -1px;
 		}

@@ -34,7 +34,10 @@ class Data_load extends CI_Controller {
 	// COMPLETE
 	public function upload()
 	{
-		//echo $this->input->post('cityName');
+		$defaultCityName = $this->input->post('cityName');
+		if($defaultCityName == "")
+			$defaultCityName = "xx";
+
 		$config['upload_path'] = './uploads/';
 		$config['allowed_types'] = 'txt';
 		$config['max_size']	= (1024 * 1024).'';
@@ -58,7 +61,7 @@ class Data_load extends CI_Controller {
 			// $string = read_file('/uploads/'.$_FILE['userfile']['name']);
 			// echo $string;
 			$error = array('error'=>'');
-			redirect('data_load/add/'.$this->upload->data()['file_name'].'/'.$this->input->post('cityName'), 'refresh');
+			redirect('data_load/add/'.$this->upload->data()['file_name'].'/'.$defaultCityName, 'refresh');
 		}
 
 		
@@ -72,6 +75,12 @@ class Data_load extends CI_Controller {
 		// $feature[] = array();
 		// $restaurant[] = array();
 		// $restaurant_feature_list[] = array();
+		$fileNameArr = explode('_', $fileName);
+		$city = substr($fileName, 0, 2);
+		if(sizeof($fileNameArr) > 1)
+		{
+			$city = substr($fileNameArr[0], 0, 1).substr($fileNameArr[1], 0, 1);
+		}
 
 		$entireFile = file('./uploads/'.$fileName);
 		if($fileName == 'features.txt')
@@ -83,15 +92,11 @@ class Data_load extends CI_Controller {
 			// call model
 			$this->load->model('feature');
 			$this->feature->insert_feature($feature);
+			$this->load->model('uploadedfile');
+			$this->uploadedfile->insert_uploadedFile(array(array('fileName' => $fileName, 'cityName' => 'Feature', 'city' => '')));
 		}
 		else
 		{
-			$fileNameArr = explode('_', $fileName);
-			$city = substr($fileName, 0, 2);
-			if(sizeof($fileNameArr) > 1)
-			{
-				$city = substr($fileNameArr[0], 0, 1).substr($fileNameArr[1], 0, 1);
-			}
 			foreach ($entireFile as $line) {
 				$explodedLine = explode("\t", $line);
 				$restaurant[] = array('city' => $city, 'restaurant_id' => $explodedLine[0], 'restaurant_name' => $explodedLine[1]);
@@ -99,15 +104,21 @@ class Data_load extends CI_Controller {
 				$explodedRestFeatureList = explode(" ", $explodedLine[2]);
 				foreach($explodedRestFeatureList as $feature)
 				{
+					$features[] = $feature;
+				}
+				// $features[] = array_splice($features, 0);
+				$features = array_unique($features);
+				// $features = null;
+				foreach ($features as $feature) {
 					$restaurant_feature_list[] = array('city' => $city, 'restaurant_id' => $explodedLine[0], 'feature_id' => $feature);
 				}
+				$features = null;
+				// $features[] = array_splice($features, 0);
 			}
 			// call model method for restaurant and restaurant_feature_list
 			$this->load->model('restaurant');
 			$this->load->model('restaurant_feature_list');
 			$this->load->model('uploadedfile');
-			// print_r($restaurant);
-			// print_r($restaurant_feature_list);
 			$this->uploadedfile->insert_uploadedFile(array(array('fileName' => $fileName, 'cityName' => $cityName, 'city' => $city)));
 			$this->restaurant->insert_restaurant($restaurant);
 			$this->restaurant_feature_list->insert_restaurant_feature_list($restaurant_feature_list);
