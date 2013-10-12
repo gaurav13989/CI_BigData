@@ -23,7 +23,11 @@ class feature extends CI_Model {
 	}
 
 	function delete_feature($arraylist){
-
+		$this->db->where_in('feature_id');
+		$this->db->delete('restaurant_feature_list');
+		
+		$this->db->where_in('feature_id',$arraylist);
+		$this->db->delete('feature');
 	}
 
 }
