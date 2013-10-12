@@ -4,12 +4,6 @@
 	It handles all CRUD operations on the restaurant_feature_list relation.
 */
 
-/**
-	CHECK getAll_restaurant_feature_list()
-		foreach($arrayList as $array)
-					$this->db->where('restaurant_id',$array['restaurant_id']);
-					$this->db->where('city',$array['city']);
-*/
 class restaurant_feature_list extends CI_Model{
 
 	// This method retrieves all records of restaurant_feature_list table of no parameter is passed
