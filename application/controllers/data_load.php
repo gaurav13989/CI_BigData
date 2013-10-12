@@ -9,17 +9,19 @@
 */
 class Data_load extends CI_Controller {
 
+	// Default Constructor
 	public function __construct()
 	{
 		parent::__construct();
 	}
 
+	// Default method that is called when this class is referenced from the URL
 	public function index()
 	{
 		$this->home();
 	}
 
-	// COMPLETE
+	// Displays the home page for this module
 	public function home($error = '')
 	{
 		// call to model retrieving all uploaded files
@@ -124,6 +126,8 @@ class Data_load extends CI_Controller {
 		redirect('data_load/home', 'refresh');
 	}
 
+	// This method deletes all records from the restaurant and restaurant_feature_list tables having city given by $initials
+	// The txt file used is also deletes from the server
 	public function delete($initials = "")
 	{
 		if($initials == ""){
