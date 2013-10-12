@@ -9,7 +9,15 @@ class Data_load extends CI_Controller {
 
 	public function index()
 	{
-		$this->home();
+		// $this->load->model('restaurant_feature_list');
+		// $data=$this->restaurant_feature_list->getAll_restaurant_feature_list($array=array(array('city'=>'de','restaurant_id'=>'10006')));
+		// foreach ($data as $r) {
+		// echo $r->city;
+		// echo $r->restaurant_id;
+		$this->load->model('uploadedfile');
+		$this->uploadedfile->delete_uploadedfile('de');
+			# code...
+		//$this->home();
 	}
 
 	// INCOMPLETE
