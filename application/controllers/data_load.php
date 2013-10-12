@@ -81,6 +81,8 @@ class Data_load extends CI_Controller {
 				$feature[] = array('feature_id' => $explodedLine[0], 'feature_name' => $explodedLine[1]);
 			}
 			// call model
+			$this->load->model('feature');
+			$this->feature->insert_feature($feature);
 		}
 		else
 		{
@@ -103,6 +105,10 @@ class Data_load extends CI_Controller {
 			// print_r($restaurant);
 			// print_r($restaurant_feature_list);
 			// call model method for restaurant and restaurant_feature_list
+			$this->load->model('restaurant');
+			$this->load->model('restaurant_feature_list');
+			$this->restaurant->insert_restaurant($restaurant);
+			$this->restaurant->insert_restaurant_feature_list($restaurant_feature_list);
 			
 		}
 		redirect('data_load/home', 'refresh');

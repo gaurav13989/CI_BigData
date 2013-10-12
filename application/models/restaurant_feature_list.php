@@ -16,7 +16,7 @@ return $data;
 }
 
 
-function insert_feature($arrayList){
+function insert_restaurant_feature_list($arrayList){
 	foreach($arrayList as $array){
 		$this->db->insert('restaurant_feature_list',$array);
 }

@@ -1,7 +1,7 @@
 <?php
 class uploadedfile extends CI_Model{
 	function getAll_uploadedfile(){
-
+		
 	}
 
 	function delete_uploadedfile($array){
