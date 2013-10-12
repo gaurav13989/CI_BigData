@@ -18,15 +18,25 @@ class uploadedfile extends CI_Model{
 		return $data;
 	}
 
-	function delete_uploadedfile($array){
+	function delete_uploadedfile($initials){
 
-		$this->db->where('city',$array);
+		$this->db->where('city',$initials);
 		$this->db->delete('uploadedfile');
 
-		$this->db->where('city',$array);
+		$this->db->where('city',$initials);
 		$this->db->delete('restaurant_feature_list');
 
-		$this->db->where('city',$array);
+		$this->db->where('city',$initials);
 		$this->db->delete('restaurant');
+	}
+
+	function getFileName($initials) {
+		$this->db->where('city',$initials);
+		$query=$this->db->get('uploadedfile');
+		$fileName = "";
+		foreach ($query->result() as $row) {
+			$fileName = $row->fileName;
+		}
+		return $fileName;
 	}
 }

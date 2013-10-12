@@ -12,8 +12,8 @@
 			padding: 10px;
 			border: 1px solid black;
 			float: left;
-			min-width: 100px;
-			min-height: 30px;
+			min-width: 128px;
+			min-height: 27px;
 			margin-right: -1px;
 			margin-bottom: -1px;
 		}

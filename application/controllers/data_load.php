@@ -22,6 +22,7 @@ class Data_load extends CI_Controller {
 		// records for all <city initails> should be deleted from all appropriate tables in the database
 		$this->load->model('uploadedfile');
 		$uploaded = $this->uploadedfile->getAll_uploadedfile();
+		$data['size'] = sizeof($uploaded);
 		if($error = '')
 			$error = array('error' => '');
 		$data['error'] = $error;
@@ -99,6 +100,10 @@ class Data_load extends CI_Controller {
 		{
 			foreach ($entireFile as $line) {
 				$explodedLine = explode("\t", $line);
+				if(sizeof($explodedLine) < 3)
+				{
+					redirect('data_load/home', 'refresh');
+				}
 				$restaurant[] = array('city' => $city, 'restaurant_id' => $explodedLine[0], 'restaurant_name' => $explodedLine[1]);
 
 				$explodedRestFeatureList = explode(" ", $explodedLine[2]);
@@ -135,6 +140,7 @@ class Data_load extends CI_Controller {
 		else {
 			// call model for deleting file and records with $initials
 			$this->load->model('uploadedfile');
+			$fileName = $this->uploadedfile->getFileName($initials);
 			$this->uploadedfile->delete_uploadedfile($initials);
 		}
 		// redirect('data_load/add/'.$this->upload->data()['file_name'], 'refresh');
