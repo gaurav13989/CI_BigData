@@ -20,12 +20,12 @@ class Data_load extends CI_Controller {
 
 		// model to delete all records of a particular city by passing city initials
 		// records for all <city initails> should be deleted from all appropriate tables in the database
-		// $this->load->model('uploadedFile');
-		// $uploaded = $this->uploadedFile->getAll();
+		$this->load->model('uploadedfile');
+		$uploaded = $this->uploadedfile->getAll_uploadedfile();
 		if($error = '')
 			$error = array('error' => '');
 		$data['error'] = $error;
-		// $data['uploadedFile'] = $uploaded;
+		$data['uploadedfile'] = $uploaded;
 		$this->load->view('header');
 		$this->load->view('home', $data);
 		$this->load->view('footer');
@@ -102,8 +102,6 @@ class Data_load extends CI_Controller {
 					$restaurant_feature_list[] = array('city' => $city, 'restaurant_id' => $explodedLine[0], 'feature_id' => $feature);
 				}
 			}
-			// print_r($restaurant);
-			// print_r($restaurant_feature_list);
 			// call model method for restaurant and restaurant_feature_list
 			$this->load->model('restaurant');
 			$this->load->model('restaurant_feature_list');
@@ -121,7 +119,8 @@ class Data_load extends CI_Controller {
 		}
 		else {
 			// call model for deleting file and records with $initials
-
+			$this->load->model('uploadedfile');
+			$this->uploadedfile->delete_uploadedfile($initials);
 		}
 		redirect('data_load/add/'.$this->upload->data()['file_name'], 'refresh');
 	}

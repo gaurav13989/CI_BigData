@@ -51,14 +51,14 @@
 		<div class="cell">Delete records</div>
 		<div class="clear"></div>
 	</div>
-	<?php // foreach($uploadedFile as $file) { // loop begin?>
+	<?php foreach($uploadedfile as $file) { // loop begin?>
 	<div class="record">
-		<div class="cell"><?php // echo $file->fileName?></div><?// hyperlinked filename?> 
-		<div class="cell"><?php // echo $file->cityName?></div><?// full city name?>
-		<div class="cell"><?php // echo $file->city?></div><?// city initials?>
+		<div class="cell"><?php echo $file->fileName?></div><?// hyperlinked filename?> 
+		<div class="cell"><?php echo $file->cityName?></div><?// full city name?>
+		<div class="cell"><?php echo $file->city?></div><?// city initials?>
 		<div class="cell"><input type="button" value="DELETE" class="deleteBtn"/></div><?// delete button?>
 		<div class="clear"></div>
 	</div>
-	<?php // } // for loop end?>
+	<?php } // for loop end?>
 </div>
 <div class="clear"></div>
