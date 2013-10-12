@@ -34,7 +34,7 @@ class Data_load extends CI_Controller {
 	// COMPLETE
 	public function upload()
 	{
-		echo $this->input->post('cityName');
+		//echo $this->input->post('cityName');
 		$config['upload_path'] = './uploads/';
 		$config['allowed_types'] = 'txt';
 		$config['max_size']	= (1024 * 1024).'';
@@ -58,20 +58,20 @@ class Data_load extends CI_Controller {
 			// $string = read_file('/uploads/'.$_FILE['userfile']['name']);
 			// echo $string;
 			$error = array('error'=>'');
-			redirect('data_load/add/'.$this->upload->data()['file_name'], 'refresh');
+			redirect('data_load/add/'.$this->upload->data()['file_name'].'/'.$this->input->post('cityName'), 'refresh');
 		}
 
 		
 	}
 
 	// INCOMPLETE
-	public function add($fileName)
+	public function add($fileName, $cityName)
 	{
 		// city code from fileName
 
-		$feature[] = array();
-		$restaurant[] = array();
-		$restaurant_feature_list[] = array();
+		// $feature[] = array();
+		// $restaurant[] = array();
+		// $restaurant_feature_list[] = array();
 
 		$entireFile = file('./uploads/'.$fileName);
 		if($fileName == 'features.txt')
@@ -105,8 +105,12 @@ class Data_load extends CI_Controller {
 			// call model method for restaurant and restaurant_feature_list
 			$this->load->model('restaurant');
 			$this->load->model('restaurant_feature_list');
+			$this->load->model('uploadedfile');
+			// print_r($restaurant);
+			// print_r($restaurant_feature_list);
+			$this->uploadedfile->insert_uploadedFile(array(array('fileName' => $fileName, 'cityName' => $cityName, 'city' => $city)));
 			$this->restaurant->insert_restaurant($restaurant);
-			$this->restaurant->insert_restaurant_feature_list($restaurant_feature_list);
+			$this->restaurant_feature_list->insert_restaurant_feature_list($restaurant_feature_list);
 			
 		}
 		redirect('data_load/home', 'refresh');
@@ -122,6 +126,7 @@ class Data_load extends CI_Controller {
 			$this->load->model('uploadedfile');
 			$this->uploadedfile->delete_uploadedfile($initials);
 		}
-		redirect('data_load/add/'.$this->upload->data()['file_name'], 'refresh');
+		// redirect('data_load/add/'.$this->upload->data()['file_name'], 'refresh');
+		redirect('data_load/home', 'refresh');
 	}
 }

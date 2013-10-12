@@ -6,7 +6,7 @@ class feature extends CI_Model {
 		
 		if(!(is_null($arrayList)))
 			$this->db->where_in('feature_id',$arrayList);
-
+		
 		$query=$this->db->get('feature');
 		if($query->num_rows()>0)
 			foreach($query->result() as $row){

@@ -30,8 +30,9 @@
 	<script type="text/javascript">
 		$(function(){
 
-			$('.delete').click(function(){
-				if(confirm('Are your sure you want to delete the file?'))
+			$('.deleteBtn').click(function(){
+				var c = confirm('Are your sure you want to delete the file?');
+				if(c == true)
 				{
 					window.location = "/CI_BigData/index.php/data_load/delete/"+$(this).parent().prev().html();
 				}
