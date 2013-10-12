@@ -13,14 +13,31 @@
 			border: 1px solid black;
 			float: left;
 			min-width: 100px;
+			margin-right: -1px;
+			margin-bottom: -1px;
 		}
 		#deleteBox {
-			float: left;
+			
 		}
 		.clear {
 			clear: both;
 		}
+		.record {
+			text-align: center;
+		}
 	</style>
-	<script type="text/javascript"></script>
+	<script type="text/javascript" src="/CI_BigData/public/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+
+			$('.delete').click(function(){
+				if(confirm('Are your sure you want to delete the file?'))
+				{
+					window.location = "/CI_BigData/index.php/data_load/delete/"+$(this).parent().prev().html();
+				}
+			});
+
+		});
+	</script>
 </head>
 <body>

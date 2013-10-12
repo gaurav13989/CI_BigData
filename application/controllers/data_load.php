@@ -12,16 +12,26 @@ class Data_load extends CI_Controller {
 		$this->home();
 	}
 
+	// INCOMPLETE
 	public function home($error = '')
 	{
+		// cal to model retrieving all uploaded files
+		// returned records as fileName - cityName - cityInitials
+
+		// model to delete all records of a particular city by passing city initials
+		// records for all <city initails> should be deleted from all appropriate tables in the database
+		// $this->load->model('uploadedFile');
+		// $uploaded = $this->uploadedFile->getAll();
 		if($error = '')
 			$error = array('error' => '');
 		$data['error'] = $error;
+		// $data['uploadedFile'] = $uploaded;
 		$this->load->view('header');
 		$this->load->view('home', $data);
 		$this->load->view('footer');
 	}
 
+	// COMPLETE
 	public function upload()
 	{
 		echo $this->input->post('cityName');
@@ -37,6 +47,7 @@ class Data_load extends CI_Controller {
 		if ( ! $this->upload->do_upload())
 		{
 			$error = array('error' => $this->upload->display_errors());
+			$this->home($error);
 			// var_dump($error);
 			// echo 'here';
 		}
@@ -47,12 +58,13 @@ class Data_load extends CI_Controller {
 			// $string = read_file('/uploads/'.$_FILE['userfile']['name']);
 			// echo $string;
 			$error = array('error'=>'');
+			redirect('data_load/add/'.$this->upload->data()['file_name'], 'refresh');
 		}
 
-		$this->home($error);
-		redirect('data_load/add/'.$this->upload->data()['file_name'], 'refresh');
+		
 	}
 
+	// INCOMPLETE
 	public function add($fileName)
 	{
 		// city code from fileName
@@ -90,7 +102,21 @@ class Data_load extends CI_Controller {
 			}
 			// print_r($restaurant);
 			// print_r($restaurant_feature_list);
-			// call model
+			// call model method for restaurant and restaurant_feature_list
+			
 		}
+		redirect('data_load/home', 'refresh');
+	}
+
+	public function delete($initials = "")
+	{
+		if($initials == ""){
+
+		}
+		else {
+			// call model for deleting file and records with $initials
+
+		}
+		redirect('data_load/add/'.$this->upload->data()['file_name'], 'refresh');
 	}
 }
