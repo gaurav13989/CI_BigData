@@ -1,4 +1,8 @@
 <?php
+/**
+	This class acts as the Model class for uploadedfile table.
+	It handles all CRUD operations on the uploadedfile relation.
+*/
 class uploadedfile extends CI_Model{
 
 	function insert_uploadedfile($arrayList) {

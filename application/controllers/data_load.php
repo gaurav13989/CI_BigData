@@ -1,5 +1,12 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+/**
+	This class handles the upload and delete of txt files having feature and restaurant data.
+	It has several functions like,
+		upload() for uploading a txt file
+		add() for loading contents of a txt file into tables
+		delete() for deleting records of a particular city or the feature list
+*/
 class Data_load extends CI_Controller {
 
 	public function __construct()
@@ -12,16 +19,13 @@ class Data_load extends CI_Controller {
 		$this->home();
 	}
 
-	// INCOMPLETE
+	// COMPLETE
 	public function home($error = '')
 	{
-		// cal to model retrieving all uploaded files
-		// returned records as fileName - cityName - cityInitials
-
-		// model to delete all records of a particular city by passing city initials
-		// records for all <city initails> should be deleted from all appropriate tables in the database
+		// call to model retrieving all uploaded files
 		$this->load->model('uploadedfile');
 		$uploaded = $this->uploadedfile->getAll_uploadedfile();
+
 		$data['size'] = sizeof($uploaded);
 		if($error = '')
 			$error = array('error' => '');
@@ -32,7 +36,7 @@ class Data_load extends CI_Controller {
 		$this->load->view('footer');
 	}
 
-	// COMPLETE
+	// This method helps in uploading the file to the database
 	public function upload()
 	{
 		$defaultCityName = $this->input->post('cityName');
@@ -48,34 +52,25 @@ class Data_load extends CI_Controller {
 		$this->load->library('upload', $config);
 		$this->upload->overwrite = true;
 
-		if ( ! $this->upload->do_upload())
+		if (!$this->upload->do_upload())
 		{
 			$error = array('error' => $this->upload->display_errors());
 			$this->home($error);
-			// var_dump($error);
-			// echo 'here';
 		}
 		else
 		{
 			// Successful upload
-			// read file and make array for inserting into db
-			// $string = read_file('/uploads/'.$_FILE['userfile']['name']);
-			// echo $string;
 			$error = array('error'=>'');
+			// redirecting for loading uploaded file in the database
 			redirect('data_load/add/'.$this->upload->data()['file_name'].'/'.$defaultCityName, 'refresh');
 		}
-
-		
 	}
 
-	// INCOMPLETE
+	// Adds contents of txt file $fileName to the database
+	// features.txt file is added to features table
+	// rest are loaded in the restaurant and restaurant_feature_list tables
 	public function add($fileName, $cityName)
 	{
-		// city code from fileName
-
-		// $feature[] = array();
-		// $restaurant[] = array();
-		// $restaurant_feature_list[] = array();
 		$fileNameArr = explode('_', $fileName);
 		$city = substr($fileName, 0, 2);
 		if(sizeof($fileNameArr) > 1)
@@ -111,16 +106,13 @@ class Data_load extends CI_Controller {
 				{
 					$features[] = $feature;
 				}
-				// $features[] = array_splice($features, 0);
 				$features = array_unique($features);
-				// $features = null;
 				foreach ($features as $feature) {
 					$restaurant_feature_list[] = array('city' => $city, 'restaurant_id' => $explodedLine[0], 'feature_id' => $feature);
 				}
 				$features = null;
-				// $features[] = array_splice($features, 0);
 			}
-			// call model method for restaurant and restaurant_feature_list
+			// call model methods for restaurant and restaurant_feature_list
 			$this->load->model('restaurant');
 			$this->load->model('restaurant_feature_list');
 			$this->load->model('uploadedfile');
@@ -138,12 +130,14 @@ class Data_load extends CI_Controller {
 
 		}
 		else {
-			// call model for deleting file and records with $initials
+			// calling model for deleting file and records with $initials
 			$this->load->model('uploadedfile');
 			$fileName = $this->uploadedfile->getFileName($initials);
+			// deleting txt file with name specified by $fileName
+			unlink('./uploads/'.$fileName);
 			$this->uploadedfile->delete_uploadedfile($initials);
 		}
-		// redirect('data_load/add/'.$this->upload->data()['file_name'], 'refresh');
+		// redirecting to the home page after deletion
 		redirect('data_load/home', 'refresh');
 	}
 }
