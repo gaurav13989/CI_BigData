@@ -34,7 +34,7 @@ class restaurant_feature_list extends CI_Model{
 
 	//
 	// $array may consist of params
-	// city(initials), restaurant_name (optional), feature_ids array of feature_id(optional)
+	// city(initials), restaurant_name (optional), NOT YET>>feature_ids array of feature_id(optional)
 	// This method returns a list of restaurants
 	// restaurant id - restaurant name - restaurant feature id list with description
 	// [1199, Mickey Mantle's, [(feature id, feature name), (feature id, feature name), (feature id, feature name)]]
@@ -56,11 +56,12 @@ class restaurant_feature_list extends CI_Model{
 			
 			// get feature ids for each restaurant
 			$this->db->where('restaurant_id', $row1->restaurant_id);
-			if(isset($array['feature_ids']))
-			{
-				$this->db->where_in('feature_id',$array['feature_ids']);
-				$this->db->order_by("COUNT(feature_id)", "desc"); 
-			}
+			// if(isset($array['feature_ids']))
+			// {
+			// 	$this->db->where_in('feature_id',$array['feature_ids']);
+			// 	$this->db->order_by("COUNT(feature_id)", "desc");
+			// 	$this->db->group_by("restaurant_id");
+			// }
 			$query2 = $this->db->get('restaurant_feature_list');
 			foreach ($query2->result() as $row2) {
 				$features['feature_id'] = $row2->feature_id;
