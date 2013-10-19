@@ -31,4 +31,51 @@ class restaurant_feature_list extends CI_Model{
 			$this->db->insert('restaurant_feature_list',$array);
 		}
 	}
+
+	//
+	// $array may consist of params
+	// city(initials), restaurant_name (optional), feature_ids array of feature_id(optional)
+	// This method returns a list of restaurants
+	// restaurant id - restaurant name - restaurant feature id list with description
+	// [1199, Mickey Mantle's, [(feature id, feature name), (feature id, feature name), (feature id, feature name)]]
+	//
+	function getRestaurants($array)
+	{
+		$this->load->model('feature');
+		// get restaurants from city
+		$this->db->where('city', $array['city']);
+		if(isset($array['restaurant_name']))
+		{
+			$this->db->like('restaurant_name', $restaurant_name);
+		}	
+		$query1 = $this->db->get('restaurant');
+		foreach ($query1->result() as $row1) {
+			
+			$restaurant_list['restaurant_id'] = $row1->restaurant_id;
+			$restaurant_list['restaurant_name'] = $row1->restaurant_name;
+			
+			// get feature ids for each restaurant
+			$this->db->where('restaurant_id', $row1->restaurant_id);
+			if(isset($array['feature_ids']))
+			{
+				$this->db->where_in('feature_id',$array['feature_ids']);
+				$this->db->order_by("COUNT(feature_id)", "desc"); 
+			}
+			$query2 = $this->db->get('restaurant_feature_list');
+			foreach ($query2->result() as $row2) {
+				$features['feature_id'] = $row2->feature_id;
+				$features['feature_name'] = $this->feature->getFeatureName($row2->feature_id);
+			}
+			$restaurant_list['features'] = $features;
+		}
+		return $restaurant_list;
+		// get feature names for features
+
+		// Alternative method
+		// $this->db->select('city, restaurant.restaurant_id, restaurant_name, feature_id, feature_name');
+		// $this->db->from('restaurant');
+		// $this->db->join('restaurant_feature_list', 'restaurant.restaurant_id = restaurant_feature_list.restaurant_id');
+		// $this->db->join('feature', 'feature.feature_id = restaurant_feature_list.feature_id');
+		// $query = $this->db->get();
+	}
 }

@@ -48,4 +48,18 @@ class uploadedfile extends CI_Model{
 		}
 		return $fileName;
 	}
+
+	// use key cityName for name of the city - Eg. New_York
+	// and key city for city code - Eg. ny
+	function getCities()
+	{
+		$this->db->where('cityName !=', 'Feature');
+		$this->db->where('cityName !=', 'feature');
+		$query = $this->db->get('uploadedFile');
+		if($query->num_rows()>0)
+			foreach($query->result() as $row){
+				$data[]=$row;
+			}
+		return $data;
+	}
 }

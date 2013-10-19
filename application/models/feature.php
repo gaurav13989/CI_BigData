@@ -4,8 +4,9 @@
 	It handles all CRUD operations on the feature relation.
 */
 class feature extends CI_Model {
-
-	// This method returns all rows of feature table unless and array of feature_id s is passed
+	// This method returns all rows of feature table unless an array of feature_id s is passed
+	// use keys 
+	// 		feature_id and feature_name
 	function getAll_feature($arrayList=NULL) {
 		
 		if(!(is_null($arrayList)))
@@ -17,6 +18,18 @@ class feature extends CI_Model {
 				$data[]=$row;
 			}
 		return $data;
+	}
+
+	function getFeatureName($feature_id)
+	{
+		$feature_name = "";
+		$this->db->where('feature_id',$feature_id);
+		$query=$this->db->get('feature');
+		if($query->num_rows()>0)
+			foreach($query->result() as $row) {
+				$feature_name = $row->feature_name;
+			}
+		return $feature_name;
 	}
 
 	// This method is used for inserting an array of rows into the feature table
@@ -35,5 +48,4 @@ class feature extends CI_Model {
 		$this->db->where_in('feature_id',$arraylist);
 		$this->db->delete('feature');
 	}
-
 }
