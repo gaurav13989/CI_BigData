@@ -62,4 +62,16 @@ class uploadedfile extends CI_Model{
 			}
 		return $data;
 	}
+	function getAllCities(){
+		$this->db->select('cityName','city');
+		$query=$this->db->get('uploadedfile');
+
+		if($query->num_rows()>0)
+			foreach ($query->result() as $row) {
+				$data[]=$row;
+			}
+			return $data;
+	}
+}
+
 }
