@@ -73,5 +73,3 @@ class uploadedfile extends CI_Model{
 			return $data;
 	}
 }
-
-}
