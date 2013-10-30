@@ -26,4 +26,16 @@ class restaurant extends CI_Model {
 			$this->db->insert('restaurant',$array);
 		}
 	}
+
+	function getRestaurant($city, $resId){
+		$this->db->where('city',$city);
+		$this->db->where('restaurant_id',$resId);
+		 $query=$this->db->get('restaurant');
+		
+		if($query->num_rows()>0)
+			foreach($query->result() as $row) {
+				$data[]=$row;
+			}
+		return $data;
+	}
 }

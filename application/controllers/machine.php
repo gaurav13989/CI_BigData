@@ -11,6 +11,24 @@ class Machine extends CI_Controller {
 		parent::__construct();
 	}
 
+	public function loadMainContainer($city,$restId){
+		$this->load->model('restaurant_feature_list');
+		$query = $this->restaurant_feature_list->features($city, $restId);
+
+		foreach($query->result() as $row) {
+			$featureIds[] = $row->feature_id;
+		}
+
+		$data['city_id']=$city;
+		$data['$restId']=$restId;
+		$this->load->model('feature');
+		$data['data'] = $this->feature->getAll_feature($featureIds);
+		$this->load->model('uploadedfile');
+		$data['city']=$this->uploadedfile->getCityName($city);
+		$this->load->model('restaurant');
+		$data['restaurant_name']=$this->restaurant->getRestaurant($city,$restId);
+		$this->load->view('main_container', $data);
+	}
 	// Displays the home page for this module
 	public function search($city = null, $restName = null)
 	{

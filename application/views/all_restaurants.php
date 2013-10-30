@@ -3,18 +3,18 @@
 <script type="text/javascript" src="/CI_BigData/public/jquery.min.js"></script>
 <script type="text/javascript">
 	$(function(){
-		$('.name').click(function() {
-			$('body').css('overflow','hidden');
-			$('.mainContainer').css({top: $('body').scrollTop()});
-			$('.backgroundContainer').css({top: $('body').position().top, height: $(document).height()});
-			$('.mainContainer').fadeIn();
-			$('.backgroundContainer').fadeIn();
+		// $('.name').click(function() {
+		// 	$('body').css('overflow','hidden');
+		// 	$('.mainContainer').css({top: $('body').scrollTop()});
+		// 	$('.backgroundContainer').css({top: $('body').position().top, height: $(document).height()});
+		// 	$('.mainContainer').fadeIn();
+		// 	$('.backgroundContainer').fadeIn();
 			
-			// load content in mainContainer using ajax - begin
+		// 	// load content in mainContainer using ajax - begin
 
-			// load content in mainContainer using ajax - end
+		// 	// load content in mainContainer using ajax - end
 
-		});
+		// });
 
 		$('.backgroundContainer').click(function() {
 			$('.mainContainer').hide();
@@ -68,7 +68,7 @@
 				<?php foreach ($row as $r):
 					if ($r->cityName != 'Feature') {
 					?>
-					<option value='<?php echo $r->city ?>'><?php echo $r->cityName ?></option>
+					<option value='<?php echo $r->city ?>'><?php echo urldecode($r->cityName) ?></option>
 				<?php }
 				endforeach ?>
 				</select>
