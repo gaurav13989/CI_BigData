@@ -63,7 +63,7 @@ class uploadedfile extends CI_Model{
 		return $data;
 	}
 	function getAllCities(){
-		$this->db->select('cityName','city');
+		//$this->db->select('cityName','city');
 		$query=$this->db->get('uploadedfile');
 
 		if($query->num_rows()>0)
@@ -71,5 +71,16 @@ class uploadedfile extends CI_Model{
 				$data[]=$row;
 			}
 			return $data;
+	}
+
+	// returns city name for a value of city initials
+	function getCityName($city) {
+		$this->db->where('city',$city);
+		$query = $this->db->get('uploadedFile');
+		$cityName = '';
+		foreach ($query->result() as $row) {
+			$cityName = $row->cityName;
+		}
+		return $cityName;
 	}
 }
