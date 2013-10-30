@@ -18,9 +18,10 @@
 			setTimeout(function() {
 				var restId = obj.parent().find('.restId').html();
 				var city = obj.prev().prev().html();
+
 				//alert(restId+" "+city);
 				$.ajax({
-					url: '/CI_BigData/index.php/machine/features/'+city+'/'+'restId',
+					url: '/CI_BigData/index.php/machine/features/'+city+'/'+restId,
 					success: function(html){
 						//alert(html);
 						obj.html(html);
