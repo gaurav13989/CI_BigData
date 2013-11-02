@@ -54,4 +54,18 @@ class Machine extends CI_Controller {
 		$data['data'] = $this->feature->getAll_feature($featureIds);
 		$this->load->view('feature_name_list', $data);
 	}
+
+	// this function returns restaurants of a given city and matching 
+	// name according to the feature ids provided
+	public function restaurantsByFeatures() {
+		// echo "a";
+		$this->load->model('restaurant_feature_list');
+		$features = null;
+		if(isset($_POST['features']))
+			$features = $_POST['features'];
+		$arr = array('city' => $_POST['city'], 'restName' => $_POST['restName'], 'features' => $features);
+		// var_dump($arr);
+		$data['restaurant_list'] = $this->restaurant_feature_list->getRestaurants($arr);
+		$this->load->view('restaurants_on_feature_change', $data);
+	}
 }	

@@ -64,56 +64,14 @@
 				});
 			}, 500);
 		});
-
-		$('input[name="features"]').change(function(){
-
-			$('#restaurants').hide();
-			$('#restaurantsShadow').show();	
-			var checkedValues = $('input[name=features]:checked').map(function() {
-				return $(this).val();
-			})
-			.get();
-         //    var jqXHR;
-         //    if(jqXHR && jqXHR.readystate != 4){
-         //   		jqXHR.abort();
-       		// }
-       		var jqXHR = $.ajax({
-       			url: '/CI_BigData/index.php/machine/restaurantsByFeatures',
-       			type: 'POST',
-       			data: { city: $('#city').val(), restName: $('#restaurant_key').val(), features: checkedValues },
-       			success: function(html) {
-       				// alert(html);
-					$('#restaurantsShadow').hide();	
-       				$('#restaurants').remove();
-       				$('body').append(html);
-       			},
-       			error: function(a, b, c) {
-					alert(a+" "+b+" "+c);
-					$('#restaurantsShadow').hide();	
-					$('#restaurants').show();
-       			}
-       		});
-		});
 	});
 </script>
-<div id="features_list">
-	<hr/>
-	<span style="text-align: center; display: inline-block;width: 100%;">Features</span>
-	<hr/>
-	<?php foreach ($features as $feature) { ?>
-		<div class="feature">
-			<input type="checkbox" name="features" value="<?php echo $feature->feature_id; ?>" id="<?php echo $feature->feature_id; ?>"/>
-			<label for="<?php echo $feature->feature_id; ?>"><?php echo $feature->feature_name ?></label>
-		</div>
-	<?php } ?>
-</div>
-<div id="restaurantsShadow" style="display: none; text-align: center; float: right; width: 75%;">
-	<img src="/CI_BigData/public/loading2.gif"/>
-</div>
 <div id="restaurants">
 	<hr/>
 	<?php $i = 0;?>
-	<?php foreach ($restaurant_list['restaurant_id'] as $restaurant) { 
+	<?php 
+	if($restaurant_list['restaurant_id'] != NULL)
+	foreach ($restaurant_list['restaurant_id'] as $restaurant) { 
 		?>
 	<div class="restaurantCell">
 		<div class="name">
@@ -131,10 +89,11 @@
 	</div>
 
 	<?php $i++; } 
-	$features = NULL;
-	$restaurants['restaurant_id'] = NULL;
-	$restaurants['restaurant_name'] = NULL;
-	$restaurants['cityName'] = NULL;
+	else{
+		?>
+		<div style="text-align: center; font-style: italic;">Sorry, your selection returned no results.</div>
+		<?php
+	}
 	?>
 	<div class="clear"></div>
 	<hr/>

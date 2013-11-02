@@ -53,13 +53,36 @@ class restaurant_feature_list extends CI_Model{
 		{
 			$this->db->like('restaurant_name', '%'.$restaurant_name.'%');
 		}
-		$this->db->order_by('restaurant_name','asc');
 		$this->db->where('city', $arr['city']);
+		$this->db->order_by('restaurant_name','asc');
 		$query1 = $this->db->get('restaurant');
+		
+		$restIds[] = null;
+		// if(isset($arr['features']))
+		// {
+		// 	$this->db->select('restaurant_id');
+		// 	$this->db->where('city', $arr['city']);
+		// 	foreach ($arr['features'] as $feature_id) {
+		// 		$this->db->where('feature_id', $feature_id);
+		// 	}
+		// 	$query2 = $this->db->get('restaurant_feature_list');
+		// 	foreach ($query2->result() as $row) {
+		// 		$restIds[] = $row->restaurant_id;
+		// 	}
+		// }
+
 		foreach ($query1->result() as $row1) {
-			
-			$restaurant_list['restaurant_id'][] = $row1->restaurant_id;
-			$restaurant_list['restaurant_name'][] = $row1->restaurant_name;
+
+			if (isset($arr['features'])) {
+				if ($this->_checkIfFeaturesMatch($arr['city'], $row1->restaurant_id, $arr['features'])) {
+					$restaurant_list['restaurant_id'][] = $row1->restaurant_id;
+					$restaurant_list['restaurant_name'][] = $row1->restaurant_name;
+				}
+			}
+			else {
+				$restaurant_list['restaurant_id'][] = $row1->restaurant_id;
+				$restaurant_list['restaurant_name'][] = $row1->restaurant_name;
+			}
 			
 			// // get feature ids for each restaurant
 			// $this->db->where('restaurant_id', $row1->restaurant_id);
@@ -91,5 +114,16 @@ class restaurant_feature_list extends CI_Model{
 		$this->db->where('city', $city);
 		$query = $this->db->get('restaurant_feature_list');
 		return $query;
+	}
+
+	public function _checkIfFeaturesMatch($city, $restId, $features) {
+		$this->db->where('city', $city);
+		$this->db->where('restaurant_id', $restId);
+		$query2 = $this->db->get('restaurant_feature_list');
+		foreach ($query2->result() as $row) {
+			$featureIds[] = $row->feature_id;
+		}
+		$min = min(sizeof($featureIds), sizeof($features));
+		return $min == sizeof(array_intersect($features, $featureIds));
 	}
 }
