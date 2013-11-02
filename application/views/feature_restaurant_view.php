@@ -64,6 +64,36 @@
 				});
 			}, 500);
 		});
+
+		$('input[name="features"]').change(function(){
+
+			$('#restaurants').hide();
+			$('#restaurantsShadow').show();	
+			var checkedValues = $('input[name=features]:checked').map(function() {
+				return $(this).val();
+			})
+			.get();
+         //    var jqXHR;
+         //    if(jqXHR && jqXHR.readystate != 4){
+         //   		jqXHR.abort();
+       		// }
+       		var jqXHR = $.ajax({
+       			url: '/CI_BigData/index.php/machine/restaurantsByFeatures',
+       			type: 'POST',
+       			data: { city: $('#city').val(), restName: $('#restaurant_key').val(), features: checkedValues },
+       			success: function(html) {
+       				// alert(html);
+					$('#restaurantsShadow').hide();	
+       				$('#restaurants').remove();
+       				$('body').append(html);
+       			},
+       			error: function(a, b, c) {
+					alert(a+" "+b+" "+c);
+					$('#restaurantsShadow').hide();	
+					$('#restaurants').show();
+       			}
+       		});
+		});
 	});
 </script>
 <div id="features_list">
@@ -76,6 +106,9 @@
 			<label for="<?php echo $feature->feature_id; ?>"><?php echo $feature->feature_name ?></label>
 		</div>
 	<?php } ?>
+</div>
+<div id="restaurantsShadow" style="display: none; text-align: center; float: right; width: 75%;">
+	<img src="/CI_BigData/public/loading2.gif"/>
 </div>
 <div id="restaurants">
 	<hr/>

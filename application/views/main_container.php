@@ -22,7 +22,7 @@ $('#select_city').html($('#city').html());
 $('#similar_search').click(function(){
 	$.ajax({
 					
-			url: '/CI_BigData/index.php/',
+			url: '/CI_BigData/index.php/similarity_controller/calculateSimilarRestaurants/',
 			success: function(html){
 				
 				$('.mainContainer').html(html);

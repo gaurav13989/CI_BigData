@@ -53,38 +53,26 @@ class restaurant_feature_list extends CI_Model{
 		{
 			$this->db->like('restaurant_name', '%'.$restaurant_name.'%');
 		}
-		$this->db->order_by('restaurant_name','asc');
 		$this->db->where('city', $arr['city']);
+		$this->db->order_by('restaurant_name','asc');
 		$query1 = $this->db->get('restaurant');
+		
+		$restIds[] = null;
 		foreach ($query1->result() as $row1) {
+
+			if (isset($arr['features'])) {
+				if ($this->_checkIfFeaturesMatch($arr['city'], $row1->restaurant_id, $arr['features'])) {
+					$restaurant_list['restaurant_id'][] = $row1->restaurant_id;
+					$restaurant_list['restaurant_name'][] = $row1->restaurant_name;
+				}
+			}
+			else {
+				$restaurant_list['restaurant_id'][] = $row1->restaurant_id;
+				$restaurant_list['restaurant_name'][] = $row1->restaurant_name;
+			}
 			
-			$restaurant_list['restaurant_id'][] = $row1->restaurant_id;
-			$restaurant_list['restaurant_name'][] = $row1->restaurant_name;
-			
-			// // get feature ids for each restaurant
-			// $this->db->where('restaurant_id', $row1->restaurant_id);
-			// // if(isset($arr['feature_ids']))
-			// // {
-			// // 	$this->db->where_in('feature_id',$arr['feature_ids']);
-			// // 	$this->db->order_by("COUNT(feature_id)", "desc");
-			// // 	$this->db->group_by("restaurant_id");
-			// // }
-			// $query2 = $this->db->get('restaurant_feature_list');
-			// foreach ($query2->result() as $row2) {
-			// 	$features['feature_id'] = $row2->feature_id;
-			// 	$features['feature_name'] = $this->feature->getFeatureName($row2->feature_id);
-			// }
-			// $restaurant_list['features'] = $features;
 		}
 		return $restaurant_list;
-		// get feature names for features
-
-		// Alternative method
-		// $this->db->select('city, restaurant.restaurant_id, restaurant_name, feature_id, feature_name');
-		// $this->db->from('restaurant');
-		// $this->db->join('restaurant_feature_list', 'restaurant.restaurant_id = restaurant_feature_list.restaurant_id');
-		// $this->db->join('feature', 'feature.feature_id = restaurant_feature_list.feature_id');
-		// $query = $this->db->get();
 	}
 	public function features($city = NULL, $restId = NULL) {
 		$this->db->where('restaurant_id', $restId);
@@ -92,6 +80,7 @@ class restaurant_feature_list extends CI_Model{
 		$query = $this->db->get('restaurant_feature_list');
 		return $query;
 	}
+
 
 	// This method is used to find cheaper restaurants
 	function getCheaperRestaurants($city,$feature_id){
@@ -123,5 +112,15 @@ class restaurant_feature_list extends CI_Model{
 		return $data;
 	}
 
-	
+	public function _checkIfFeaturesMatch($city, $restId, $features) {
+		$this->db->where('city', $city);
+		$this->db->where('restaurant_id', $restId);
+		$query2 = $this->db->get('restaurant_feature_list');
+		foreach ($query2->result() as $row) {
+			$featureIds[] = $row->feature_id;
+		}
+		$min = min(sizeof($featureIds), sizeof($features));
+		return $min == sizeof(array_intersect($features, $featureIds));
+	}
+
 }
