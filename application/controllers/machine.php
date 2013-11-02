@@ -68,4 +68,11 @@ class Machine extends CI_Controller {
 		$data['restaurant_list'] = $this->restaurant_feature_list->getRestaurants($arr);
 		$this->load->view('restaurants_on_feature_change', $data);
 	}
+	//finds cheaper restaurants
+	public function findCheaperRestaurants($city,$feature_id){
+		$this->load->model('restaurant_feature_list');
+		$data['data']=$this->restaurant_feature_list->getCheaperRestaurants($city,$feature_id);
+		
+		$this->load->view('cheaper_restaurants_view',$data);
+	}
 }	
