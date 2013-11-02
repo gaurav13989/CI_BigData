@@ -4,6 +4,25 @@
 <script type="text/javascript" src="/CI_BigData/public/jquery.min.js"></script>
 <script type="text/javascript">
 	$(function(){
+		$('#next').click(function(){
+			//alert('asd'+$('#shown').next('.sliderElement').length);
+			if($('#shown').next('.sliderElement').length > 0)
+			{
+				var obj = $('#shown').next();
+				$('#shown').attr('id', '');
+				obj.attr('id', 'shown');
+			}
+		});
+		
+		$('#prev').click(function(){
+			//alert('asd'+$('#shown').prev('.sliderElement').length);
+			if($('#shown').prev('.sliderElement').length > 0)
+			{
+				var obj = $('#shown').prev();
+				$('#shown').attr('id', '');
+				obj.attr('id', 'shown');
+			}
+		});
 		// $('.name').click(function() {
 		// 	$('body').css('overflow','hidden');
 		// 	$('.mainContainer').css({top: $('body').scrollTop()});
@@ -20,7 +39,8 @@
 		$('.backgroundContainer').click(function() {
 			$('.mainContainer').hide();
 			$('.backgroundContainer').hide();
-			$('.mainContainer').html('');
+			// $('.mainContainer').html('');
+			$('#topContainer').html($('#loadingDiv').html());
 			$('.backgroundContainer').html('');
 			$('body').css('overflow','auto');
 		});
@@ -65,7 +85,22 @@
 </head>
 <body>
 	<div class="backgroundContainer"></div>
-	<div class="mainContainer"></div>
+	<div class="mainContainer">
+		<div id="topContainer">
+			<div style="text-align: center; margin-top: 20%;">
+				<img src="/CI_BigData/public/loading2.gif"/>
+			</div>
+		</div>
+		<div id="bottomContainer">
+			<div id="next">&gt;</div>
+			<div id="prev">&lt;</div>
+		</div>
+		<div id="loadingDiv" style="display: none;">
+			<div style="text-align: center; margin-top: 20%;">
+				<img src="/CI_BigData/public/loading2.gif"/>
+			</div>
+		</div>
+	</div>
 	<div id="title" align="center"><h1>RESTAURANT SEARCH SYSTEM</h1></div>
 	<hr/>
 	<div id="search">

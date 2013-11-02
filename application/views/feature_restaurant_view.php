@@ -23,7 +23,8 @@
 					url: '/CI_BigData/index.php/machine/loadMainContainer/'+city+'/'+restId,
 					success: function(html){
 						//alert(html);
-						$('.mainContainer').html(html);
+						$('#topContainer').html('');
+						$('#topContainer').append(html);
 					},
 					error: function(a, b, c) {
 						alert(a+" "+b+" "+c);

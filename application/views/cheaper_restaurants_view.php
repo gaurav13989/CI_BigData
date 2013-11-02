@@ -1,4 +1,4 @@
-<html>
+<div id="shown" class="sliderElement">
 <?php
 	foreach ($data as $row) {
 ?>
@@ -8,4 +8,4 @@
 <?php	 	
 	 } 
 ?>
-</html>
+</div>

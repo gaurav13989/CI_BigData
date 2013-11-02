@@ -2,6 +2,41 @@ body {
 	margin: 0px;
 	padding: 0px;
 }
+#topContainer {
+	height: 90%;
+	margin: 5px;
+	overflow: auto;
+}
+#bottomContainer {
+	height: 5%;
+	margin: 2px;
+	padding: 5px;
+}
+#next {
+	border: 1px solid rgba(100,100,100,0.3);
+	text-align: center;
+	padding: 5px 10px;
+	width: 70px;
+	float: right;
+	font-family: cursive;
+	cursor: pointer;
+}
+#prev {
+	border: 1px solid rgba(100,100,100,0.3);
+	text-align: center;
+	padding: 5px 10px;
+	width: 70px;
+	float: right;
+	font-family: cursive;
+	margin-right: 3px;
+	cursor: pointer;
+}
+.sliderElement {
+	display: none;
+}
+#shown {
+	display: block;
+}
 #search{
 	float:left;
 	width: 100%;
@@ -69,6 +104,19 @@ body {
 	font-style: italic;
 	border: dotted 1px rgb(100,100,100);
 	margin-bottom: 2px;
+}
+.feature2 {
+	text-align: left;
+	padding: 30px 40px;
+	margin-right: 10px;
+	width: 200px;
+	height: 5%;
+	float: left;
+	font-style: italic;
+	border: dotted 1px rgb(100,100,100);
+	margin-bottom: 2px;
+	background: rgba(100,150,200,0.5);
+
 }
 .backgroundContainer {
 	width: 100%;
