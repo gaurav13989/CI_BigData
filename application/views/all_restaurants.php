@@ -77,6 +77,14 @@
 			$('#features_list').remove();
 					$('#restaurants').remove();
 		});
+		
+		$('.backgroundContainer').click(function() {
+			$('.mainContainer').hide();
+			$('.backgroundContainer').hide();
+			$('.mainContainer').html('');
+			$('.backgroundContainer').html('');
+			$('body').css('overflow','auto');
+		});
 	});
 </script>
 <link rel="stylesheet" type="text/css" href="/CI_BigData/public/styling.css"/>

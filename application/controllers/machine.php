@@ -29,6 +29,7 @@ class Machine extends CI_Controller {
 		$data['restaurant_name']=$this->restaurant->getRestaurant($city,$restId);
 		$this->load->view('main_container', $data);
 	}
+	
 	// Displays the home page for this module
 	public function search($city = null, $restName = null)
 	{
@@ -55,6 +56,14 @@ class Machine extends CI_Controller {
 		$this->load->view('feature_name_list', $data);
 	}
 
+	//finds cheaper restaurants
+	public function findCheaperRestaurants($city,$feature_id){
+		$this->load->model('restaurant_feature_list');
+		$data['data']=$this->restaurant_feature_list->getCheaperRestaurants($city,$feature_id);
+		
+		$this->load->view('cheaper_restaurants_view',$data);
+	}
+	
 	// this function returns restaurants of a given city and matching 
 	// name according to the feature ids provided
 	public function restaurantsByFeatures() {
@@ -68,11 +77,5 @@ class Machine extends CI_Controller {
 		$data['restaurant_list'] = $this->restaurant_feature_list->getRestaurants($arr);
 		$this->load->view('restaurants_on_feature_change', $data);
 	}
-	//finds cheaper restaurants
-	public function findCheaperRestaurants($city,$feature_id){
-		$this->load->model('restaurant_feature_list');
-		$data['data']=$this->restaurant_feature_list->getCheaperRestaurants($city,$feature_id);
-		
-		$this->load->view('cheaper_restaurants_view',$data);
-	}
+
 }	

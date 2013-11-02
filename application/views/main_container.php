@@ -59,3 +59,4 @@
 	</select>
 	<input id='similar_search' type="button" value="Search"></input>
 </div>
+
