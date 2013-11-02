@@ -92,4 +92,36 @@ class restaurant_feature_list extends CI_Model{
 		$query = $this->db->get('restaurant_feature_list');
 		return $query;
 	}
+
+	// This method is used to find cheaper restaurants
+	function getCheaperRestaurants($city,$feature_id){
+		
+		$this->db->select('restaurant.restaurant_id');
+		$this->db->select('restaurant.restaurant_name');
+		$this->db->from('restaurant_feature_list');
+		$this->db->join('restaurant','restaurant_feature_list.restaurant_id=restaurant.restaurant_id 
+			AND restaurant_feature_list.city=restaurant.city');
+		// $this->db->where('city',$city);
+		$this->db->where('feature_id','161');
+		if($feature_id=='167'){
+			$this->db->or_where('feature_id','164');
+		}
+		if($feature_id=='169'){
+			$this->db->or_where('feature_id','164');
+			$this->db->or_where('feature_id','167');
+		}
+
+		$this->db->distinct();
+		$query=$this->db->get();
+	
+
+		if($query->num_rows()>0)
+			foreach($query->result() as $row){
+
+				$data[]=$row;
+		}
+		return $data;
+	}
+
+	
 }

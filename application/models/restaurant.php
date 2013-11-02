@@ -38,4 +38,17 @@ class restaurant extends CI_Model {
 			}
 		return $data;
 	}
+
+	function getCityRestaurant($city){
+		$this->db->where('city',$city);
+	
+		 $query=$this->db->get('restaurant');
+		
+		if($query->num_rows()>0)
+			foreach($query->result() as $row) {
+				$data[]=$row;
+			}
+		return $data;
+	}
+	
 }
