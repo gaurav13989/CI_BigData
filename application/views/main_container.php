@@ -21,8 +21,11 @@
 		$('#select_city').html($('#city').html());
 
 		$('#similar_search').click(function(){
+			var cityS=$('#city_id').html().trim();
+			var cityD=$('#select_city').val().trim();
+			var resid=$('#res_id').html().trim();
 			$.ajax({			
-				url: '/CI_BigData/index.php/',
+				url: '/CI_BigData/index.php/similarity_controller/calculateSimilarRestaurants/'+cityS+'/'+cityD+'/'+resid,
 				success: function(html){
 					$('.mainContainer').html(html);
 				},
@@ -36,6 +39,7 @@
 	<?php foreach ($restaurant_name as $r) {?>
 		<div style="text-align: center; font-size: 22px; font-weight: bold; margin-top: 50px;" class=''>-- <?php echo $r->restaurant_name?> --</div>
 	<?php }?>
+		<div id='res_id' style="display:none"><?php echo $restId ?></div>
 		<div id='city_id' style="display:none"> <?php echo $city_id?> </div>
 		<div style="text-align: center; font-size: 16px; font-style: italic;"><?php echo $city?></div>
 		<br>
