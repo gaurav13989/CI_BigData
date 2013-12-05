@@ -23,7 +23,10 @@
 					url: '/CI_BigData/index.php/machine/loadMainContainer/'+city+'/'+restId,
 					success: function(html){
 						//alert(html);
-						$('.mainContainer').html(html);
+						$('#topContainer').html('<div style="text-align: center; margin-top: 20%;">
+													<img src="/CI_BigData/public/loading2.gif"/>
+												</div>');
+						$('#topContainer').append(html);
 					},
 					error: function(a, b, c) {
 						alert(a+" "+b+" "+c);
