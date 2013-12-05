@@ -36,10 +36,22 @@ class similarity_controller extends CI_Controller{
 		}
 
 		arsort($restaurant);
+		foreach ($variable as $key => $value) {
+			# code...
+			$restaurant=$this->restaurant->getRestaurant($cityD,$key);
+			$resName='';
+			foreach ($restaurant as $r) {
+				$resName=$r->restaurant_name;
+			}
+			$restaurant_names[$key]=$resName;
+		}
 
+		$this->load->model('uploadedfile');
+		$cityName=$this->uploadedfile->getCityName($cityD);
 		$send_to_view['restaurants']=$restaurant;
 		$send_to_view['city']=$cityD;
-
+		$send_to_view['city_name']=$cityName;
+		$send_To_view['restaurant_names']=$restaurant_names;
 		$this->load->view("similar_restaurants_view",$send_to_view);
 }
 

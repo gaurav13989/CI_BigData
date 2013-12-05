@@ -61,7 +61,12 @@ $(function(){
 </script>
 
 
-<div id='similar_restaurants'>
-
+<div id='similar_restaurants1'>
+<?php echo $cityName;
+foreach ($restaurant_names as $key => $value) {
+	# code...
+	echo $value;
+}
+?>
 </div>
 
