@@ -81,7 +81,7 @@
 		$('.backgroundContainer').click(function() {
 			$('.mainContainer').hide();
 			$('.backgroundContainer').hide();
-			$('.mainContainer').html('');
+			// $('.mainContainer').html('');
 			$('.backgroundContainer').html('');
 			$('body').css('overflow','auto');
 		});

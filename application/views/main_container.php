@@ -40,6 +40,7 @@
 		<div style="text-align: center; font-size: 16px; font-style: italic;"><?php echo $city?></div>
 		<br>
 		<br>
+		<div style="text-align: center; text-justify: distribute-all-lines; width: 100%;">
 	<?php foreach ($data as $feature) { ?>
 		<div class='feature2'>
 		<?php echo $feature->feature_name;
@@ -51,12 +52,93 @@
 		}
 		?>
 		</div>
+		</div>
 
 	<?php } ?>
-	Find Similar Restaurants in:
-	<select id='select_city'>
-
-	</select>
-	<input id='similar_search' type="button" value="Search"></input>
 </div>
-
+<div style="clear: both;"></div>
+<div>Recommended restaurants from the same city
+		<hr/>
+	<div style="margin-right: 5px; overflow-x: auto; height: auto; width: auto;">
+		<div class="restaurantCell" style="display: inline-block;">
+			<div class="name">
+				<span style="display: none;" class="restId">
+					restid
+				</span>
+				<div class="resName">Rest1</div>
+			</div>
+			<div class="cityIni" style="display: none;">cityInitials</div>
+			<div class="city">cityName</div>
+			<div class="features">
+				<div style="text-align: center; margin-top: 20%;"><img src="/CI_BigData/public/loading.gif"/></div>
+			</div>
+		</div>
+		<div class="restaurantCell" style="display: inline-block;">
+			<div class="name">
+				<span style="display: none;" class="restId">
+					restid
+				</span>
+				<div class="resName">Rest1</div>
+			</div>
+			<div class="cityIni" style="display: none;">cityInitials</div>
+			<div class="city">cityName</div>
+			<div class="features">
+				<div style="text-align: center; margin-top: 20%;"><img src="/CI_BigData/public/loading.gif"/></div>
+			</div>
+		</div>
+		<div class="restaurantCell" style="display: inline-block;">
+			<div class="name">
+				<span style="display: none;" class="restId">
+					restid
+				</span>
+				<div class="resName">Rest1</div>
+			</div>
+			<div class="cityIni" style="display: none;">cityInitials</div>
+			<div class="city">cityName</div>
+			<div class="features">
+				<div style="text-align: center; margin-top: 20%;"><img src="/CI_BigData/public/loading.gif"/></div>
+			</div>
+		</div>
+		<div class="restaurantCell" style="display: inline-block;">
+			<div class="name">
+				<span style="display: none;" class="restId">
+					restid
+				</span>
+				<div class="resName">Rest1</div>
+			</div>
+			<div class="cityIni" style="display: none;">cityInitials</div>
+			<div class="city">cityName</div>
+			<div class="features">
+				<div style="text-align: center; margin-top: 20%;"><img src="/CI_BigData/public/loading.gif"/></div>
+			</div>
+		</div>
+		<div class="restaurantCell" style="display: inline-block;">
+			<div class="name">
+				<span style="display: none;" class="restId">
+					restid
+				</span>
+				<div class="resName">Rest1</div>
+			</div>
+			<div class="cityIni" style="display: none;">cityInitials</div>
+			<div class="city">cityName</div>
+			<div class="features">
+				<div style="text-align: center; margin-top: 20%;"><img src="/CI_BigData/public/loading.gif"/></div>
+			</div>
+		</div>
+		<div class="restaurantCell" style="display: inline-block;">
+			<div class="name">
+				<span style="display: none;" class="restId">
+					restid
+				</span>
+				<div class="resName">Rest1</div>
+			</div>
+			<div class="cityIni" style="display: none;">cityInitials</div>
+			<div class="city">cityName</div>
+			<div class="features">
+				<div style="text-align: center; margin-top: 20%;"><img src="/CI_BigData/public/loading.gif"/></div>
+			</div>
+		</div>
+		<div class="clear"></div>
+	</div>
+		<hr/>
+</div>

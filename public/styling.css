@@ -80,6 +80,7 @@ body {
 	padding: 10px;
 	margin: 3px 3px 0px 0px;
 	border: dashed 1px rgb(100,100,100);
+	display: inline-block;
 }
 .name {
 	text-align: center;
@@ -100,21 +101,21 @@ body {
 }
 .feature {
 	text-align: left;
-	padding: 5px;
+	padding: 2px;
 	font-style: italic;
 	border: dotted 1px rgb(100,100,100);
 	margin-bottom: 2px;
 }
 .feature2 {
-	text-align: left;
-	padding: 30px 40px;
-	margin-right: 10px;
-	width: 200px;
-	height: 5%;
+	text-align: center;
+	padding: 10px;
+	margin-right: 5px;
+	min-width: 100px;
+	height: 70px;
 	float: left;
 	font-style: italic;
 	border: dotted 1px rgb(100,100,100);
-	margin-bottom: 2px;
+	margin-bottom: 5px;
 	background: rgba(100,150,200,0.5);
 
 }
@@ -135,4 +136,12 @@ body {
 	background-color: rgb(250,250,250);
 	display: none;
 	position: absolute;
+}
+.rest {
+	width: 120px;
+	margin-right: 5px;
+	padding: 3px;
+	background: rgba(130,170,70,0.5);
+	border: 1px dotted black;
+	float: left;
 }
