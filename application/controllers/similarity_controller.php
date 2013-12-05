@@ -17,20 +17,19 @@ class similarity_controller extends CI_Controller{
 
 		foreach ($restaurants as $row) {
 			$id=$row->restaurant_id;
-			if(!($cityD == $cityS && $id == $resId))
-			{
-				$array['city']=$cityD;
-				$array['restaurant_id']=$id;
-				$b=array($array);
-				$d=$this->restaurant_feature_list->getAll_restaurant_feature_list($b);
+			$array['city']=$cityD;
+			$array['restaurant_id']=$id;
+			$b=array($array);
+			$d=$this->restaurant_feature_list->getAll_restaurant_feature_list($b);
 
-				foreach($d as $r){
-					$destinationfeatures[]=$r->feature_id;
-				}
-				
-				 $count=sizeof(array_intersect($sourcefeatures, $destinationfeatures));
-				$restaurant[$id]=$count;				
+			foreach($d as $r){
+				$destinationfeatures[]=$r->feature_id;
 			}
+			
+			 $count=sizeof(array_intersect($sourcefeatures, $destinationfeatures));
+			$restaurant[$id]=$count;
+			
+
 			//$all_restaurants[]=$restaurant;
 
 		}
