@@ -42,5 +42,13 @@ class similarity_controller extends CI_Controller{
 		$this->load->view("similar_restaurants_view",$send_to_view);
 }
 
-
+public function getRestaurantName($city,$resId){
+	$this->load->model('restaurant');
+	$restaurant=$this->restaurant->getRestaurant($city,$resId);
+	$resName='';
+	foreach ($restaurant as $r) {
+		$resName=$r->restaurant_name;
+	}
+	echo $resName;
+}
 }

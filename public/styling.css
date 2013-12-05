@@ -99,6 +99,13 @@ body {
 	overflow-y: auto;
 	margin-top: 3px;
 }
+.featuresf {
+	background-color: rgb(200,200,150);
+	height: 500px;
+	max-height: 70%;
+	overflow-y: auto;
+	margin-top: 3px;
+}
 .feature {
 	text-align: left;
 	padding: 2px;
