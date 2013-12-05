@@ -20,7 +20,7 @@ class Machine extends CI_Controller {
 		}
 
 		$data['city_id']=$city;
-		$data['$restId']=$restId;
+		$data['restId']=$restId;
 		$this->load->model('feature');
 		$data['data'] = $this->feature->getAll_feature($featureIds);
 		$this->load->model('uploadedfile');
