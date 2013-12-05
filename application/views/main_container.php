@@ -61,9 +61,13 @@
 	<?php } ?>
 </div>
 <div style="clear: both;"></div>
-<div>Recommended restaurants from the same city
+<!-- Recommended restaurants from same city -->
+<div style="overflow: auto;">
+	<div style="height: 20px;"></div>
+	<span style="font-style: italic; margin-left: 20px;">Recommended restaurants from the city <?php echo $city?></span>
+	<div style="margin-right: 5px; position: relative; overflow: hidden; height: auto; width: 300%;">
 		<hr/>
-	<div style="margin-right: 5px; overflow-x: auto; height: auto; width: auto;">
+
 		<div class="restaurantCell" style="display: inline-block;">
 			<div class="name">
 				<span style="display: none;" class="restId">
@@ -77,72 +81,107 @@
 				<div style="text-align: center; margin-top: 20%;"><img src="/CI_BigData/public/loading.gif"/></div>
 			</div>
 		</div>
-		<div class="restaurantCell" style="display: inline-block;">
-			<div class="name">
-				<span style="display: none;" class="restId">
-					restid
-				</span>
-				<div class="resName">Rest1</div>
-			</div>
-			<div class="cityIni" style="display: none;">cityInitials</div>
-			<div class="city">cityName</div>
-			<div class="features">
-				<div style="text-align: center; margin-top: 20%;"><img src="/CI_BigData/public/loading.gif"/></div>
-			</div>
-		</div>
-		<div class="restaurantCell" style="display: inline-block;">
-			<div class="name">
-				<span style="display: none;" class="restId">
-					restid
-				</span>
-				<div class="resName">Rest1</div>
-			</div>
-			<div class="cityIni" style="display: none;">cityInitials</div>
-			<div class="city">cityName</div>
-			<div class="features">
-				<div style="text-align: center; margin-top: 20%;"><img src="/CI_BigData/public/loading.gif"/></div>
-			</div>
-		</div>
-		<div class="restaurantCell" style="display: inline-block;">
-			<div class="name">
-				<span style="display: none;" class="restId">
-					restid
-				</span>
-				<div class="resName">Rest1</div>
-			</div>
-			<div class="cityIni" style="display: none;">cityInitials</div>
-			<div class="city">cityName</div>
-			<div class="features">
-				<div style="text-align: center; margin-top: 20%;"><img src="/CI_BigData/public/loading.gif"/></div>
-			</div>
-		</div>
-		<div class="restaurantCell" style="display: inline-block;">
-			<div class="name">
-				<span style="display: none;" class="restId">
-					restid
-				</span>
-				<div class="resName">Rest1</div>
-			</div>
-			<div class="cityIni" style="display: none;">cityInitials</div>
-			<div class="city">cityName</div>
-			<div class="features">
-				<div style="text-align: center; margin-top: 20%;"><img src="/CI_BigData/public/loading.gif"/></div>
-			</div>
-		</div>
-		<div class="restaurantCell" style="display: inline-block;">
-			<div class="name">
-				<span style="display: none;" class="restId">
-					restid
-				</span>
-				<div class="resName">Rest1</div>
-			</div>
-			<div class="cityIni" style="display: none;">cityInitials</div>
-			<div class="city">cityName</div>
-			<div class="features">
-				<div style="text-align: center; margin-top: 20%;"><img src="/CI_BigData/public/loading.gif"/></div>
-			</div>
-		</div>
+
 		<div class="clear"></div>
-	</div>
 		<hr/>
+	</div>
+</div>
+<div style="text-align: right;">MORE</div>
+<div class="containerForAllRemainingRecommendations">
+	<div style="overflow: auto;">
+		<div style="height: 20px;"></div>
+		<span style="font-style: italic; margin-left: 20px;">Recommended restaurants from the city <?php echo $city?></span>
+		<div style="margin-right: 5px; position: relative; overflow: hidden; height: auto; width: 300%;">
+			<hr/>
+
+			<div class="restaurantCell" style="display: inline-block;">
+				<div class="name">
+					<span style="display: none;" class="restId">
+						restid
+					</span>
+					<div class="resName">Rest1</div>
+				</div>
+				<div class="cityIni" style="display: none;">cityInitials</div>
+				<div class="city">cityName</div>
+				<div class="features">
+					<div style="text-align: center; margin-top: 20%;"><img src="/CI_BigData/public/loading.gif"/></div>
+				</div>
+			</div>
+
+			<div class="clear"></div>
+			<hr/>
+		</div>
+	</div>
+	<div style="overflow: auto;">
+		<div style="height: 20px;"></div>
+		<span style="font-style: italic; margin-left: 20px;">Recommended restaurants from the city <?php echo $city?></span>
+		<div style="margin-right: 5px; position: relative; overflow: hidden; height: auto; width: 300%;">
+			<hr/>
+
+			<div class="restaurantCell" style="display: inline-block;">
+				<div class="name">
+					<span style="display: none;" class="restId">
+						restid
+					</span>
+					<div class="resName">Rest1</div>
+				</div>
+				<div class="cityIni" style="display: none;">cityInitials</div>
+				<div class="city">cityName</div>
+				<div class="features">
+					<div style="text-align: center; margin-top: 20%;"><img src="/CI_BigData/public/loading.gif"/></div>
+				</div>
+			</div>
+
+			<div class="clear"></div>
+			<hr/>
+		</div>
+	</div>
+	<div style="overflow: auto;">
+		<div style="height: 20px;"></div>
+		<span style="font-style: italic; margin-left: 20px;">Recommended restaurants from the city <?php echo $city?></span>
+		<div style="margin-right: 5px; position: relative; overflow: hidden; height: auto; width: 300%;">
+			<hr/>
+
+			<div class="restaurantCell" style="display: inline-block;">
+				<div class="name">
+					<span style="display: none;" class="restId">
+						restid
+					</span>
+					<div class="resName">Rest1</div>
+				</div>
+				<div class="cityIni" style="display: none;">cityInitials</div>
+				<div class="city">cityName</div>
+				<div class="features">
+					<div style="text-align: center; margin-top: 20%;"><img src="/CI_BigData/public/loading.gif"/></div>
+				</div>
+			</div>
+
+			<div class="clear"></div>
+			<hr/>
+		</div>
+	</div>
+	<div style="overflow: auto;">
+		<div style="height: 20px;"></div>
+		<span style="font-style: italic; margin-left: 20px;">Recommended restaurants from the city <?php echo $city?></span>
+		<div style="margin-right: 5px; position: relative; overflow: hidden; height: auto; width: 300%;">
+			<hr/>
+
+			<div class="restaurantCell" style="display: inline-block;">
+				<div class="name">
+					<span style="display: none;" class="restId">
+						restid
+					</span>
+					<div class="resName">Rest1</div>
+				</div>
+				<div class="cityIni" style="display: none;">cityInitials</div>
+				<div class="city">cityName</div>
+				<div class="features">
+					<div style="text-align: center; margin-top: 20%;"><img src="/CI_BigData/public/loading.gif"/></div>
+				</div>
+			</div>
+
+			<div class="clear"></div>
+			<hr/>
+		</div>
+	</div>
 </div>
