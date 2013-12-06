@@ -90,7 +90,7 @@ class restaurant_feature_list extends CI_Model{
 		$this->db->from('restaurant_feature_list');
 		$this->db->join('restaurant','restaurant_feature_list.restaurant_id=restaurant.restaurant_id 
 			AND restaurant_feature_list.city=restaurant.city');
-		// $this->db->where('city',$city);
+		$this->db->where('restaurant.city', $city);
 		$this->db->where('feature_id','161');
 		if($feature_id=='167'){
 			$this->db->or_where('feature_id','164');
@@ -99,7 +99,6 @@ class restaurant_feature_list extends CI_Model{
 			$this->db->or_where('feature_id','164');
 			$this->db->or_where('feature_id','167');
 		}
-
 		$this->db->distinct();
 		$query=$this->db->get();
 	

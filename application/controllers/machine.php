@@ -57,10 +57,11 @@ class Machine extends CI_Controller {
 	}
 
 	//finds cheaper restaurants
-	public function findCheaperRestaurants($city,$feature_id){
+	public function findCheaperRestaurants($city,$feature_id,$cityName){
 		$this->load->model('restaurant_feature_list');
-		$data['data']=$this->restaurant_feature_list->getCheaperRestaurants($city,$feature_id);
-		
+		$data['restData']=$this->restaurant_feature_list->getCheaperRestaurants($city,$feature_id);
+		$data['city'] = $city;
+		$data['cityName'] = $cityName;
 		$this->load->view('cheaper_restaurants_view',$data);
 	}
 	

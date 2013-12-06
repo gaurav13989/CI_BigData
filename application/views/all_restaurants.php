@@ -5,7 +5,7 @@
 <script type="text/javascript">
 	$(function(){
 		$('#next').click(function(){
-			//alert('asd'+$('#shown').next('.sliderElement').length);
+			/*alert('asd'+$('#shown').next('.sliderElement').length);*/
 			if($('#shown').next('.sliderElement').length > 0)
 			{
 				var obj = $('#shown').next();
@@ -15,37 +15,39 @@
 		});
 		
 		$('#prev').click(function(){
-			//alert('asd'+$('#shown').prev('.sliderElement').length);
+			/*alert('asd'+$('#shown').prev('.sliderElement').length);*/
 			if($('#shown').prev('.sliderElement').length > 0)
 			{
 				var obj = $('#shown').prev();
 				$('#shown').attr('id', '');
 				obj.attr('id', 'shown');
 			}
+		
 		});
-		// $('.name').click(function() {
-		// 	$('body').css('overflow','hidden');
-		// 	$('.mainContainer').css({top: $('body').scrollTop()});
-		// 	$('.backgroundContainer').css({top: $('body').position().top, height: $(document).height()});
-		// 	$('.mainContainer').fadeIn();
-		// 	$('.backgroundContainer').fadeIn();
+
+		/*$('.name').click(function() {
+			$('body').css('overflow','hidden');
+			$('.mainContainer').css({top: $('body').scrollTop()});
+			$('.backgroundContainer').css({top: $('body').position().top, height: $(document).height()});
+			$('.mainContainer').fadeIn();
+			$('.backgroundContainer').fadeIn();
 			
-		// 	// load content in mainContainer using ajax - begin
+			// load content in mainContainer using ajax - begin
 
-		// 	// load content in mainContainer using ajax - end
+			// load content in mainContainer using ajax - end
 
-		// });
+		});*/
 
 		$('.backgroundContainer').click(function() {
 			$('.mainContainer').hide();
 			$('.backgroundContainer').hide();
-			// $('.mainContainer').html('');
+			/*$('.mainContainer').html('');*/
 			$('#topContainer').html($('#loadingDiv').html());
 			$('.backgroundContainer').html('');
 			$('body').css('overflow','auto');
 		});
-		// ajax to get restaurants acc to city and restaurant name
-		// search if the id of the search button 
+		/*ajax to get restaurants acc to city and restaurant name
+		search if the id of the search button */
 		$('#search_button').on('click',function() {
 			var city = $('#city').val();
 			var restName = $('#restaurant_key').val();
@@ -58,7 +60,7 @@
 				url: '/CI_BigData/index.php/machine/search/'+city+'/'+restName,
 				type: 'GET',
 				success: function(html) {
-					//alert(html);
+					/*alert(html);*/
 					$('#firstLoad').hide();
 					$('#features_list').remove();
 					$('#restaurants').remove();
@@ -81,7 +83,7 @@
 		$('.backgroundContainer').click(function() {
 			$('.mainContainer').hide();
 			$('.backgroundContainer').hide();
-			// $('.mainContainer').html('');
+			/*$('.mainContainer').html('');*/
 			$('.backgroundContainer').html('');
 			$('body').css('overflow','auto');
 		});
@@ -109,7 +111,7 @@
 			</div>
 		</div>
 	</div>
-	<div id="title" align="center"><h1>RESTAURANT SEARCH SYSTEM</h1></div>
+	<div id="title" align="center"><h1>RESTAURANT SEARCH SYSTEM - Big Data Project - Group 9</h1></div>
 	<hr/>
 	<div id="search">
 		<div id="first">

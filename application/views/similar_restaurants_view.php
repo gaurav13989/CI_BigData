@@ -20,7 +20,7 @@ $(function(){
 					}
 				});
 		
-			//$('#similar_restaurants').append(city);
+			/*$('#similar_restaurants').append(city);*/
 	<?php
 	$x++;
 	if($x==8){
@@ -61,7 +61,12 @@ $(function(){
 </script>
 
 
-<div id='similar_restaurants'>
-
+<div id='similar_restaurants1'>
+<?php echo $cityName;
+foreach ($restaurant_names as $key => $value) {
+	# code...
+	echo $value;
+}
+?>
 </div>
 

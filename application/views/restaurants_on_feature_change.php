@@ -7,44 +7,43 @@
 			$('.mainContainer').fadeIn();
 			$('.backgroundContainer').fadeIn();
 			
-			// load content in mainContainer using ajax - begin
+			/* load content in mainContainer using ajax - begin */
 			var res_name= $(this).find('#resName').html();
 			var city_name=$(this).parent().find('.city').html();
-			//var features=[];
+			/*var features=[]; */
 			var f=$(this).parent().find('.features').html();
 			
 			var obj = $(this);
 			
 				var restId = obj.parent().find('.restId').html();
 				var city = obj.next().html();
-				//$('.mainContainer').html(city);
-				//alert(restId+" "+city);
+				/*$('.mainContainer').html(city);*/
+				/*alert(restId+" "+city);*/
+				$('#topContainer').html('<div style="text-align: center; margin-top: 20%;"><img src="/CI_BigData/public/loading2.gif"/></div>');
 				$.ajax({
 					url: '/CI_BigData/index.php/machine/loadMainContainer/'+city+'/'+restId,
 					success: function(html){
-						//alert(html);
-						$('#topContainer').html('<div style="text-align: center; margin-top: 20%;">
-													<img src="/CI_BigData/public/loading2.gif"/>
-												</div>');
+						/*alert(html);*/
+						$('#topContainer').html('');
 						$('#topContainer').append(html);
 					},
 					error: function(a, b, c) {
 						alert(a+" "+b+" "+c);
 					}
 				});
-			// $.ajax({
-			// 		url: '/CI_BigData/index.php/machine/features/'+res_name+"/"+city_name,
-			// 		success: function(html){
-			// 			//alert(html);
-			// 			$('.mainContainer').html(html);
-			// 		},
-			// 		error: function(a, b, c) {
-			// 			alert(a+" "+b+" "+c);
-			// 		}
-			// 	});
-			// $('.mainContainer').append(f);
+			 /*$.ajax({
+					url: '/CI_BigData/index.php/machine/features/'+res_name+"/"+city_name,
+					success: function(html){
+						//alert(html);
+						$('.mainContainer').html(html);
+					},
+					error: function(a, b, c) {
+						alert(a+" "+b+" "+c);
+					}
+				});
+			$('.mainContainer').append(f);*/
 		
-			// load content in mainContainer using ajax - end
+			/*load content in mainContainer using ajax - end */
 
 		});
 
@@ -54,11 +53,11 @@
 				var restId = obj.parent().find('.restId').html();
 				var city = obj.prev().prev().html();
 
-				//alert(restId+" "+city);
+				/* alert(restId+" "+city); */
 				$.ajax({
 					url: '/CI_BigData/index.php/machine/features/'+city+'/'+restId,
 					success: function(html){
-						//alert(html);
+						/* alert(html); */
 						obj.html(html);
 					},
 					error: function(a, b, c) {
